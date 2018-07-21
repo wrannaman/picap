@@ -37,4 +37,4 @@ const setupSocket = () => {
   return socket;
 };
 
-module.exports = setupSocket();
+module.exports = { setup: setupSocket(), getSocket: () => socket };

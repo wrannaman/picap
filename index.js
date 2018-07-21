@@ -1,4 +1,4 @@
-const socket = require('./connection');
+const { setup, getSocket } = require('./connection');
 const MPR121 = require('node-picap');
 const mpr121 = new MPR121('0x5C', { interval: 30 });
 
@@ -6,6 +6,11 @@ const mpr121 = new MPR121('0x5C', { interval: 30 });
 // the module attempts to emit data events - the MPR121
 // hardware sets a lower limit on this - default is 10ms,
 // can set down to 1ms
+
+let socket = setup;
+setInterval(() => {
+  socket = getSocket();
+}, 200)
 
 mpr121.on('data', function(data) {
   // split out each of the various data streams...

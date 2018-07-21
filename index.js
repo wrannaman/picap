@@ -18,6 +18,7 @@ mpr121.on('data', function(data) {
 
   // ...and send them out via stdout - simples!
   touch.forEach((t, i) => {
+    console.log('index', i , 'touch ', t);
     if (t) socket.emit('picap', { index: i });
   })
   console.log('TOUCH: ' + touch.join(' '));
